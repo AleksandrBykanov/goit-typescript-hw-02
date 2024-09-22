@@ -18,3 +18,7 @@ export interface Image {
   };
 }
 
+export interface ResponseData {
+  results: Image[],
+  total_pages: number
+}

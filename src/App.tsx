@@ -7,8 +7,7 @@ import ImageModal from "./components/ImageModal/ImageModal";
 import { useEffect, useState} from "react";
 import axios from "axios";
 import './App.css'
-import { Image} from "./components/Types/types";
-
+import {Image, ResponseData} from "./components/Types/types";
 
 function App() {
   const [images, setImages] = useState<Image[]>([]);
@@ -25,7 +24,7 @@ function App() {
     async function fetchImagesByData() {
       try {
         setLoading(true);
-        const { data } = await axios.get(
+        const { data } = await axios.get<ResponseData>(
           `https://api.unsplash.com/search/photos?client_id=1FrxQdxZqIzEvaS9vHGUY2G62nXyYi7w7y_S4vo6_gg&query=${search.search}&per_page=12&page=${page}`
         );
         setImages((images) => [...images, ...data.results]);
